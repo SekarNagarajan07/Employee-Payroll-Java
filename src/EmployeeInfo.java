@@ -144,6 +144,59 @@ class Employee {
 
         }
     }
+    void deleteEmployee(){
+        try {
+            System.out.print("Enter the Employee Id: ");
+            eid = sc.nextInt();
+
+            System.out.print("Enter the FirstName: ");
+            eFirstName = sc.next();
+
+            System.out.print("Enter the LastName: ");
+            eLastName = sc.next();
+
+            System.out.print("Enter the Email: ");
+            eEmail = sc.next();
+
+            System.out.print("Enter the PhoneNumber: ");
+            ePhoneNumber = sc.nextInt();
+
+            System.out.print("Enter the HireDate: ");
+            eDate = sc.nextInt();
+
+            System.out.print("Enter the Salary: ");
+            eSalary = sc.nextDouble();
+
+            System.out.print("Enter the JobTitle: ");
+            eJobTitle = sc.next();
+
+            System.out.print("Enter the Department: ");
+            eDepartment = sc.next();
+
+            System.out.print("Enter the ManagerId: ");
+            managerId = sc.nextInt();
+
+            System.out.print("Enter the Commission: ");
+            eCommission = sc.nextDouble();
+
+            System.out.print("Enter the EmployeeType: ");
+            eEmployeeType = sc.next();
+
+            Connection c = DriverManager.getConnection("jdbc:mysql://localhost/employee_payroll","sekar","Sekar2002@");
+
+            PreparedStatement ps = c.prepareStatement("delete from emp_info where eid = ?");
+            ps.setInt(1,eid);
+
+
+            int result = ps.executeUpdate();
+
+            System.out.print(result>0 ? "Data Deleted": "Data not saved");
+        }
+        catch (Exception e){
+            System.out.print(e);
+
+        }
+    }
 }
 
 class EmployeeInfo{
@@ -151,6 +204,7 @@ class EmployeeInfo{
         Employee employee = new Employee();
         employee.addEmployee();
         employee.updateEmployee();
+        employee.deleteEmployee();
     }
 
 }
